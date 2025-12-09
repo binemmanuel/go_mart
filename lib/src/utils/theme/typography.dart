@@ -65,10 +65,10 @@ TextTheme createTextTheme(ColorScheme colorScheme) {
       color: colorScheme.onSurface,
     ),
     bodyMedium: TextStyle(
-      fontFamily: 'Outfit',
-      fontSize: 14,
-      fontWeight: .w400,
       color: colorScheme.onSurface,
+      fontFamily: 'Outfit',
+      fontWeight: .w400,
+      fontSize: 16,
     ),
     bodySmall: TextStyle(
       fontFamily: 'Outfit',
