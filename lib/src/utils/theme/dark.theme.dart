@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'palette.dart';
+import 'button.text.style.dart';
 import 'typography.dart';
+import 'palette.dart';
 
 final _colorScheme = ColorScheme.fromSeed(
   seedColor: Palette.primary,
@@ -24,14 +25,14 @@ final darkTheme = ThemeData(
 
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      textStyle: TextStyle(
-        color: _colorScheme.onSurface,
-        fontWeight: .bold,
-        fontSize: 17,
-      ),
+      textStyle: buttonTextStyle.copyWith(color: _colorScheme.onSurface),
       backgroundColor: _colorScheme.onSecondary,
       foregroundColor: _colorScheme.onPrimary,
       minimumSize: const Size.fromHeight(50),
     ),
+  ),
+
+  iconButtonTheme: IconButtonThemeData(
+    style: IconButton.styleFrom(backgroundColor: Colors.white),
   ),
 );

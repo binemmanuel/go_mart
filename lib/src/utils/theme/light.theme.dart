@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
+import 'button.text.style.dart';
 import 'palette.dart';
 import 'typography.dart';
 
 final _colorScheme = ColorScheme.fromSeed(
+  surface: const Color(0xFFEFF1F3),
   seedColor: Palette.primary,
   brightness: Brightness.light,
   onSecondary: Colors.black,
   onPrimary: Colors.white,
-  surface: Colors.white,
 );
 
 final lightTheme = ThemeData(
@@ -23,14 +24,14 @@ final lightTheme = ThemeData(
 
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      textStyle: TextStyle(
-        color: _colorScheme.onSurface,
-        fontWeight: .bold,
-        fontSize: 17,
-      ),
+      textStyle: buttonTextStyle.copyWith(color: _colorScheme.onSurface),
       backgroundColor: _colorScheme.onSecondary,
       foregroundColor: _colorScheme.onPrimary,
       minimumSize: const Size.fromHeight(60),
     ),
+  ),
+
+  iconButtonTheme: IconButtonThemeData(
+    style: IconButton.styleFrom(backgroundColor: Colors.black),
   ),
 );
