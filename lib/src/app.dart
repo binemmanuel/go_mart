@@ -13,7 +13,7 @@ class App extends StatelessWidget {
       darkTheme: darkTheme,
       themeMode: ThemeMode.system,
 
-      home: const HomePage(),
+      home: const OnboardingPage(),
     );
   }
 }
