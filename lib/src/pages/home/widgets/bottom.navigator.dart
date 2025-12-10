@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class BottomNavigator extends StatelessWidget {
   const BottomNavigator(this.value, {super.key, this.onTap});
@@ -104,7 +105,7 @@ class BottomNavigatorButton extends StatelessWidget {
       child: Tooltip(
         message: tooltip,
         child: InkWell(
-          onTap: onTap,
+          onTap: onTap == null ? null : _onTap,
           borderRadius: const .all(.circular(100)),
 
           child: AnimatedContainer(
@@ -118,6 +119,11 @@ class BottomNavigatorButton extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _onTap() {
+    HapticFeedback.selectionClick();
+    onTap?.call();
   }
 }
 
