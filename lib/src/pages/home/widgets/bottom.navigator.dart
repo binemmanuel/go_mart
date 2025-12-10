@@ -118,18 +118,6 @@ class BottomNavigatorButton extends StatelessWidget {
         ),
       ),
     );
-
-    return IconButton(
-      onPressed: onTap,
-      style: IconButton.styleFrom(
-        disabledBackgroundColor: backgroundColor,
-        disabledForegroundColor: foregroundColor,
-        backgroundColor: backgroundColor,
-        foregroundColor: foregroundColor,
-        fixedSize: const Size(50, 50),
-      ),
-      icon: Icon(icon),
-    );
   }
 }
 
