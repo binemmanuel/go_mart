@@ -12,11 +12,15 @@ class BottomNavigator extends StatelessWidget {
     return BottomNavigatorContainer(
       navigatorItems: BottomNavigatorItem.values.map((item) {
         if (item == value) {
-          return BottomNavigatorButton.selected(icon: item.icon);
+          return BottomNavigatorButton.selected(
+            tooltip: item.tooltip,
+            icon: item.icon,
+          );
         }
 
         return BottomNavigatorButton(
           onTap: () => onTap?.call(item),
+          tooltip: item.tooltip,
           icon: item.icon,
         );
       }).toList(),
@@ -70,14 +74,22 @@ class BottomNavigatorContainer extends StatelessWidget {
 }
 
 class BottomNavigatorButton extends StatelessWidget {
-  const BottomNavigatorButton({super.key, required this.icon, this.onTap})
-    : selected = false;
+  const BottomNavigatorButton({
+    super.key,
+    required this.tooltip,
+    required this.icon,
+    this.onTap,
+  }) : selected = false;
 
-  const BottomNavigatorButton.selected({super.key, required this.icon})
-    : selected = true,
-      onTap = null;
+  const BottomNavigatorButton.selected({
+    super.key,
+    required this.tooltip,
+    required this.icon,
+  }) : selected = true,
+       onTap = null;
 
   final VoidCallback? onTap;
+  final String tooltip;
   final IconData icon;
   final bool selected;
 
@@ -86,6 +98,26 @@ class BottomNavigatorButton extends StatelessWidget {
     final color = Theme.of(context).colorScheme;
     final backgroundColor = selected ? color.onPrimary : null;
     final foregroundColor = selected ? color.onSecondary : color.onPrimary;
+
+    return Material(
+      color: Colors.transparent,
+      child: Tooltip(
+        message: tooltip,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: const .all(.circular(100)),
+
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 500),
+            padding: const .all(10),
+
+            decoration: BoxDecoration(color: backgroundColor, shape: .circle),
+
+            child: Icon(icon, color: foregroundColor),
+          ),
+        ),
+      ),
+    );
 
     return IconButton(
       onPressed: onTap,
@@ -102,12 +134,13 @@ class BottomNavigatorButton extends StatelessWidget {
 }
 
 enum BottomNavigatorItem {
-  search(icon: CupertinoIcons.search),
-  compass(icon: CupertinoIcons.compass),
-  globe(icon: CupertinoIcons.globe),
-  infinite(icon: CupertinoIcons.infinite);
+  search(icon: CupertinoIcons.search, tooltip: 'Search'),
+  compass(icon: CupertinoIcons.compass, tooltip: 'Navigate'),
+  globe(icon: CupertinoIcons.globe, tooltip: 'Browse'),
+  infinite(icon: CupertinoIcons.infinite, tooltip: 'History');
 
   final IconData icon;
+  final String tooltip;
 
-  const BottomNavigatorItem({required this.icon});
+  const BottomNavigatorItem({required this.icon, required this.tooltip});
 }
