@@ -110,7 +110,7 @@ class BottomNavigatorButton extends StatelessWidget {
 
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 500),
-            padding: const .all(10),
+            padding: const .all(13),
 
             decoration: BoxDecoration(color: backgroundColor, shape: .circle),
 
